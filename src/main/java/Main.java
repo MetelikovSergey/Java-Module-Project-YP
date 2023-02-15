@@ -2,23 +2,23 @@ import java.util.Scanner;
 
 // dev branch for Y.Practicum
 public class Main {
-    Scanner scanner = new Scanner(System.in);
+    static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
-        int numberOfGuests;
-        Scanner scanner = new Scanner(System.in);
+        int numberOfGuests = 0;
 
-        while (true){
-            System.out.println("Введите количество гостей");
-            numberOfGuests = scanner.nextInt();
-            if (numberOfGuests < 1){
-                System.out.println("Не коректное количество гостей, попробуйте еще раз.\n Количество гостей должно быть больше 1 ");
-            } else if (numberOfGuests == 1) {
-                System.out.println("Не коректное количество гостей, попробуйте еще раз.\n Количество гостей должно быть больше 1");
 
-            } else if (numberOfGuests > 1) {
-                break;
+        do {
+            System.out.println("Введите количество гостей\nКоличество гостей должно быть больше 1.");
+            while (!scanner.hasNextInt()){
+                System.out.println("Не коректное количество гостей, попробуйте еще раз.\nКоличество гостей должно быть больше 1." +
+                        "\nВведите количество гостей ");
+                scanner.next();
             }
-        }
+            numberOfGuests = scanner.nextInt();
+
+        }while (numberOfGuests <= 1);
+
+
         Calculator.calculete(numberOfGuests);
 
     }

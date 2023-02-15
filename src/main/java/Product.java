@@ -1,4 +1,4 @@
 public class Product {
-    String nameProduct;
+    String nameProduct = "";
     double priceProduct;
 }

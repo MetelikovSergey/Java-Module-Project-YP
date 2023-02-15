@@ -1,22 +1,28 @@
-import java.util.Scanner;
+
 
 public class Calculator {
     public static void calculete(int countGuest) {
-        Scanner scanner = new Scanner(System.in);
+
         Product product = new Product();
+        System.out.println("Введите название блюда:");
         while (true) {
             String name;
-            System.out.println("Введите название блюда");
-            name = scanner.next();
-            if (name.equalsIgnoreCase("Завершить")) {
 
+            name = Main.scanner.next();
+            if (name.equalsIgnoreCase("Завершить")) {
                 break;
-            } else {
-                product.nameProduct += name + "\n ";
+            } do {
+                product.nameProduct += name + "\n";
                 System.out.println("Введите стоимость товара (цифрой)");
-                product.priceProduct += scanner.nextDouble();
-                System.out.println("Чтобы закончить формирование счета введите команду \"Завершить\"\nЕсли хотите продолжить формировать счет,");
-            }
+                while(!Main.scanner.hasNextDouble()){
+                    System.out.println("Не коректный ввод цены, попробуйте еще раз.");
+                    Main.scanner.next();
+                }
+                product.priceProduct += Main.scanner.nextDouble();
+                System.out.println("Чтобы закончить формирование счета введите команду \"Завершить\"\nЕсли хотите продолжить формировать счет,\n" +
+                        "введите название блюда:");
+
+            }while (Main.scanner.hasNextDouble());
         }
         System.out.println(product.nameProduct + "\n" + "Общая стоимость = " +
                 String.format("%.2f",product.priceProduct)   + " " + Formater.GetEnding((int) product.priceProduct) );
